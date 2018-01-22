@@ -5,4 +5,4 @@
 
 sleep ${PAUSE:-0}
 
-exec /opt/goodrain/etcd/bin/etcd --data-dir /data/
+exec /opt/goodrain/etcd/etcd --data-dir /data/

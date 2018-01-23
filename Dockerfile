@@ -1,6 +1,6 @@
 FROM goodrainapps/alpine:3.4
 
-ENV ETCD_VER=2.3.7
+ENV ETCD_VER=3.2.15
 ENV PATH=$PATH:/opt/goodrain/etcd
 ENV PACKAGE_URL=https:/pkg.goodrain.com
 

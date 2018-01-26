@@ -16,7 +16,7 @@ exec /opt/goodrain/etcd/etcd \
      --initial-advertise-peer-urls http://127.0.0.1:2380 \
      --listen-peer-urls http://0.0.0.0:2380 \
      --initial-cluster-token etcd-cluster-1 \
-     --initial-cluster etcd0=http://127.0.0.1:2380 \
+     --initial-cluster ${NODE_NAME}=http://127.0.0.1:2380 \
      --initial-cluster-state new
       
 

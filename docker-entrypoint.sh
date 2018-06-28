@@ -16,12 +16,12 @@ else
     for peer in $peers; do
     id=${peer%%.*}
     id=${id##*-}
-    peer2="node${id}=http://${peer}:2380"
+    peer="node${id}=http://${peer}:2380"
 
 if [[ x$peers_http == x ]]; then
-    peers_http="$peer2"
+    peers_http="$peer"
 else
-    peers_http="${peers_http},$peer2"
+    peers_http="${peers_http},$peer"
 fi
 
 done

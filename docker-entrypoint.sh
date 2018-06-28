@@ -30,7 +30,7 @@ done
     sleep 3
 fi
 
-
+echo $start_cmd
 
 exec /opt/goodrain/etcd/etcd \
      --name="node$SELF_ID" \

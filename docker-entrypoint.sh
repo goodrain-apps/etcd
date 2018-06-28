@@ -16,7 +16,7 @@ else
     for peer in $peers; do
     id=${peer%%.*}
     id=${id##*-}
-    peer="node${id}=$peer"
+    peer="node${id}=http://${peer}:2380"
 
 if [[ x$peers_http == x ]]; then
     peers_http="$peer"

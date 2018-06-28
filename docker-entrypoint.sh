@@ -1,11 +1,7 @@
 #!/bin/bash
 
-NODE_NAME=${SERVICE_NAME:-etcd01}
-
-
 [[ $DEBUG ]] && set -x
 
-cd $TIDB_HOME
 SELF_IP=$(ping -c 1 `hostname`|head -n 1 | awk -F '[()]' '{print $2}')
 SELF_ID=${HOSTNAME##*-}
 HOST_NAME=`hostname -f`

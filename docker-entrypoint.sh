@@ -6,6 +6,7 @@ SELF_IP=$(ping -c 1 `hostname`|head -n 1 | awk -F '[()]' '{print $2}')
 SELF_ID=${HOSTNAME##*-}
 HOST_NAME=`hostname -f`
 
+chmod +x /usr/bin/net
 peers=`net lookupsrv -h $SERVICE_NAME --format http://%s:2380`
 
 if [[ x$peers == x ]]; then

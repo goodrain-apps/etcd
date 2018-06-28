@@ -16,17 +16,17 @@ else
     for peer in $peers; do
     id=${peer%%.*}
     id=${id##*-}
-    peer="node${id}=http://${peer}:2380"
+    peer2="node${id}=http://${peer}:2380"
 
 if [[ x$peers_http == x ]]; then
-    peers_http="$peer"
+    peers_http="$peer2"
 else
-    peers_http="${peers_http},$peer"
+    peers_http="${peers_http},$peer2"
 fi
 
 done
 
-    start_cmd="--initial-cluster $peers_http"
+    start_cmd="--initial-cluster $peers_http,node$SELF_ID=http://$HOST_NAME:2380"
     sleep 3
 fi
 

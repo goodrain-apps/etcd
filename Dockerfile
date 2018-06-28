@@ -10,6 +10,7 @@ RUN mkdir -pv /opt/goodrain \
 
 VOLUME [ "/data" ]
 EXPOSE 4001 2379
+COPY net /usr/bin/net
 COPY docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
 ENTRYPOINT [ "/docker-entrypoint.sh" ]

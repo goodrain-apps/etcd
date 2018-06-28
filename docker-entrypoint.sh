@@ -18,7 +18,7 @@ else
     id=${id##*-}
     peer="node${id}=$peer"
 
-if [[ x$peers_http == "" ]]; then
+if [[ x$peers_http == x ]]; then
     peers_http="$peer"
 else
     peers_http="${peers_http},$peer"

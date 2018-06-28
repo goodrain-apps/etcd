@@ -26,7 +26,7 @@ fi
 
 done
 
-    start_cmd=$peers_http
+    start_cmd="--initial-cluster $peers_http"
     sleep 3
 fi
 

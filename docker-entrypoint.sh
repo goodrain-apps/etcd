@@ -12,7 +12,7 @@ peers=`net lookupsrv -h $SERVICE_NAME --format http://%s:2380`
 if [[ x$peers == x ]]; then
   start_cmd="--initial-cluster pd$SELF_ID=http://$HOST_NAME:2380"
 else
-  start_cmd="--initial-cluster,$peers"
+  start_cmd="--initial-cluster $peers"
   sleep 3
 fi
 

@@ -46,7 +46,7 @@ exec /opt/goodrain/etcd/etcd \
      --data-dir /data/  \
      --listen-client-urls http://0.0.0.0:2379 \
      --advertise-client-urls http://$SELF_IP:2379 \
-     --initial-advertise-peer-urls http://$peerx:2380 \
+     --initial-advertise-peer-urls http://$SELF_IP:2380 \
      --listen-peer-urls http://0.0.0.0:2380 \
      --initial-cluster-token etcd-cluster-1 \
      $start_cmd \

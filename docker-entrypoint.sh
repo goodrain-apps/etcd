@@ -42,5 +42,5 @@ exec /opt/goodrain/etcd/etcd \
      --initial-advertise-peer-urls http://$HOST_NAME:2380 \
      --listen-peer-urls http://0.0.0.0:2380 \
      --initial-cluster-token etcd-cluster-1 \
-     --initial-cluster-state $start_state \
+     --initial-cluster-state new \
      $start_cmd

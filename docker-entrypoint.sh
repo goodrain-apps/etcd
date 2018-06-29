@@ -31,11 +31,12 @@ fi
 
 done
     etcdctl --endpoints "http://$peerx:2380" member add node$SELF_ID http://$HOST_NAME:2380
+    echo "success"
     export ETCD_NAME="$SELF_ID"
     export ETCD_INITIAL_CLUSTER="$peers_http,node$SELF_ID=http://$HOST_NAME:2380"
     export ETCD_INITIAL_CLUSTER_STATE=existing
-    start_cmd="--initial-cluster $peers_http,node$SELF_ID=http://$HOST_NAME:2380"
-    start_state="--initial-cluster-state new"
+    # start_cmd="--initial-cluster $peers_http,node$SELF_ID=http://$HOST_NAME:2380"
+    # start_state="--initial-cluster-state new"
     sleep 3
 fi
 
@@ -46,7 +47,7 @@ exec /opt/goodrain/etcd/etcd \
      --data-dir /data/  \
      --listen-client-urls http://0.0.0.0:2379 \
      --advertise-client-urls http://$SELF_IP:2379 \
-     --initial-advertise-peer-urls http://$SELF_IP:2380 \
+     --initial-advertise-peer-urls http://$HOST_NAME:2380 \
      --listen-peer-urls http://0.0.0.0:2380 \
      --initial-cluster-token etcd-cluster-1 \
      $start_cmd \

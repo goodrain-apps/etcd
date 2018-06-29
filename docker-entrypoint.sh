@@ -10,8 +10,6 @@ chmod +x /usr/bin/net
 peers=`net lookupsrv -h $SERVICE_NAME --wrap`
 
 if [[ x$peers == x ]]; then
-    export ETCD_INITIAL_CLUSTER_STATE=new
-    export ETCD_INITIAL_CLUSTER="node$SELF_ID=http://$HOST_NAME:2380"
     start_cmd="--initial-cluster node$SELF_ID=http://$HOST_NAME:2380"
     start_state="--initial-cluster-state new"
 else

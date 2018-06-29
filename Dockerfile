@@ -9,7 +9,7 @@ RUN mkdir -pv /opt/goodrain \
     && ln -s /opt/goodrain/etcd-v${GRETCD_VER}-linux-amd64 /opt/goodrain/etcd
 ENV DEBUG=true
 VOLUME [ "/data" ]
-EXPOSE 2380 2379
+EXPOSE 2380 2379 4001
 COPY net /usr/bin/net
 COPY docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh

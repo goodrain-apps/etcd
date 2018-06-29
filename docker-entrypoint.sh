@@ -28,7 +28,7 @@ else
 fi
 
 done
-    etcdctl --endpoints "http://$peerx:2380" member add $SELF_ID http://$HOST_NAME:2380
+    etcdctl --endpoints "http://$peerx:2380" member add node$SELF_ID http://$HOST_NAME:2380
     export ETCD_NAME="$SELF_ID"
     export ETCD_INITIAL_CLUSTER="$peers_http,node$SELF_ID=http://$HOST_NAME:2380"
     export ETCD_INITIAL_CLUSTER_STATE=existing

@@ -33,7 +33,7 @@ done
     export ETCD_INITIAL_CLUSTER="$peers_http,node$SELF_ID=http://$HOST_NAME:2380"
     export ETCD_INITIAL_CLUSTER_STATE=existing
     start_cmd=""
-    start_state=""
+    start_state="--initial-cluster-state existing"
     sleep 3
 fi
 

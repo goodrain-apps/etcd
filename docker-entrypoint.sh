@@ -11,6 +11,7 @@ peers=`net lookupsrv -h $SERVICE_NAME --wrap`
 
 if [[ x$peers == x ]]; then
     start_cmd="--initial-cluster node$SELF_ID=http://$HOST_NAME:2380"
+    start_state="new"
 else
     peers_http=""
     for peer in $peers; do
@@ -27,6 +28,7 @@ fi
 done
 
     start_cmd="--initial-cluster $peers_http,node$SELF_ID=http://$HOST_NAME:2380"
+    start_state="existing"
     sleep 3
 fi
 
@@ -40,5 +42,5 @@ exec /opt/goodrain/etcd/etcd \
      --initial-advertise-peer-urls http://$HOST_NAME:2380 \
      --listen-peer-urls http://0.0.0.0:2380 \
      --initial-cluster-token etcd-cluster-1 \
-     --initial-cluster-state new \
+     --initial-cluster-state $start_state \
      $start_cmd

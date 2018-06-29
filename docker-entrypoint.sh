@@ -42,7 +42,7 @@ echo $start_cmd
 exec /opt/goodrain/etcd/etcd \
      --name="node$SELF_ID" \
      --data-dir /data/  \
-     --listen-client-urls http://$SELF_IP:2379 \
+     --listen-client-urls http://0.0.0.0:2379 \
      --advertise-client-urls http://$SELF_IP:2379 \
      --initial-advertise-peer-urls http://$peerx:2380 \
      --listen-peer-urls http://0.0.0.0:2380 \

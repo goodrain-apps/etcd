@@ -59,7 +59,7 @@ fi
 exec /opt/goodrain/etcd/etcd \
      --name="node$SELF_ID" \
      --data-dir /data/  \
-     --listen-client-urls http://$HOST_NAME:2379,http://$HOST_NAME:4001 \
+     --listen-client-urls http://$SELF_IP:2379,http://$SELF_IP:4001 \
      --advertise-client-urls http://$SELF_IP:2379,http://$SELF_IP:4001 \
      --initial-advertise-peer-urls http://$HOST_NAME:2380 \
      --listen-peer-urls http://0.0.0.0:2380 \

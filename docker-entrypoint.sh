@@ -23,7 +23,12 @@ else
     peers_http=""
     peerx=""
     for peer in $peers; do
-      peerx=$peer
+    if [[ x$peerx == x ]]; then
+    peerx=$peer
+    else
+    peer=$peerx
+    fi
+    
       id=${peer%%.*}
       id=${id##*-}
       peer2="node${id}=http://${peer}:2380"

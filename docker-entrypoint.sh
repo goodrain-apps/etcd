@@ -13,7 +13,7 @@ chmod +x /usr/bin/net
 peers=`net lookupsrv -h $SERVICE_NAME --wrap`
 echo $peers
 
-while [ $SELF_ID -gt 0 && x$peers == x ]; do
+while [[ $SELF_ID -gt 0 && x$peers == x ]]; do
     sleep 2
 done
 

@@ -8,6 +8,7 @@ RUN mkdir -pv /opt/goodrain \
     && curl -s ${PACKAGE_URL}/apps/etcd/etcd-v${GRETCD_VER}-linux-amd64.tar.gz | tar -xz -C /opt/goodrain \
     && ln -s /opt/goodrain/etcd-v${GRETCD_VER}-linux-amd64 /opt/goodrain/etcd
 ENV DEBUG=true
+ENV ETCDCTL_API=3
 VOLUME [ "/data" ]
 EXPOSE 2380 2379 4001
 COPY net /usr/bin/net

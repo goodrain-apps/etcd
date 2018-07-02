@@ -19,20 +19,20 @@ else
     peers_http=""
     peerx=""
     for peer in $peers; do
-    peerx=$peer
-    id=${peer%%.*}
-    id=${id##*-}
-    peer2="node${id}=http://${peer}:2380"
+      peerx=$peer
+      id=${peer%%.*}
+      id=${id##*-}
+      peer2="node${id}=http://${peer}:2380"
 
-if [[ x$peers_http == x ]]; then
-    peers_http="$peer2"
-else
-    peers_http="${peers_http},$peer2"
-fi
+      if [[ x$peers_http == x ]]; then
+          peers_http="$peer2"
+      else
+          peers_http="${peers_http},$peer2"
+      fi
 
-done
+    done
     echo $peerx
-    etcdctl --endpoints "http://$peerx:2380" member add node$SELF_ID http://$HOST_NAME:2380
+    ETCDCTL_API=3 etcdctl --endpoints "http://$peerx:2380" member add node$SELF_ID --peer-urls="http://$HOST_NAME:2380"
     etcdctl member list
     export ETCD_NAME="node$SELF_ID"
     export ETCD_INITIAL_CLUSTER="$peers_http,node$SELF_ID=http://$HOST_NAME:2380"
@@ -46,6 +46,14 @@ fi
 
 echo $start_cmd
 
+# etcd --name infra2 \
+# --discovery-srv example.com \
+# --initial-advertise-peer-urls http://10.0.1.12:2380 \
+# --initial-cluster-token etcd-cluster-1 \
+# --initial-cluster-state new \
+# --advertise-client-urls http://10.0.1.12:2379 \
+# --listen-client-urls http://10.0.1.12:2379 \
+# --listen-peer-urls http://10.0.1.12:2380
 exec /opt/goodrain/etcd/etcd \
      --name="node$SELF_ID" \
      --data-dir /data/  \

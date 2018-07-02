@@ -46,10 +46,10 @@ echo $start_cmd
 exec /opt/goodrain/etcd/etcd \
      --name="node$SELF_ID" \
      --data-dir /data/  \
-     --listen-client-urls http://$SELF_IP:2379,http://127.0.0.1:2379 \
-     --advertise-client-urls http://$SELF_IP:2379 \
+     --listen-client-urls http://0.0.0.0:2379,http://0.0.0.0:4001 \
+     --advertise-client-urls http://$SELF_IP:2379,http://$SELF_IP:4001 \
      --initial-advertise-peer-urls http://$HOST_NAME:2380 \
-     --listen-peer-urls http://$SELF_IP:2380 \
+     --listen-peer-urls http://0.0.0.0:2380 \
      --initial-cluster-token etcd-cluster-1 \
      $start_cmd \
      $start_state

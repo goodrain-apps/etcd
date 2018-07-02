@@ -31,9 +31,8 @@ else
       fi
 
     done
-    echo $peerx
+    echo $peers_http
     ETCDCTL_API=3 etcdctl --endpoints "http://$peerx:2380" member add node$SELF_ID --peer-urls="http://$HOST_NAME:2380"
-    etcdctl member list
     export ETCD_NAME="node$SELF_ID"
     export ETCD_INITIAL_CLUSTER="$peers_http,node$SELF_ID=http://$HOST_NAME:2380"
     export ETCD_INITIAL_CLUSTER_STATE="existing"
@@ -44,7 +43,6 @@ else
     sleep 3
 fi
 
-echo $start_cmd
 
 # etcd --name infra2 \
 # --discovery-srv example.com \

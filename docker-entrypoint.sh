@@ -11,6 +11,7 @@ HOST_NAME=`hostname -f`
 
 chmod +x /usr/bin/net
 peers=`net lookupsrv -h $SERVICE_NAME --wrap`
+echo $peers
 
 if [[ x$peers == x ]]; then
     start_cmd="--initial-cluster node$SELF_ID=http://$HOST_NAME:2380"

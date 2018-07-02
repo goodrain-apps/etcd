@@ -3,7 +3,10 @@
 [[ $DEBUG ]] && set -x
 
 SELF_IP=$(ping -c 1 `hostname`|head -n 1 | awk -F '[()]' '{print $2}')
-SELF_ID=${HOSTNAME##*-}
+SELF_ID=${HOSTNAME##*-} 
+if [ $SELF_ID != 0 ]
+  sleep 10000
+fi
 HOST_NAME=`hostname -f`
 
 chmod +x /usr/bin/net

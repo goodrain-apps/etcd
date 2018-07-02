@@ -4,31 +4,26 @@
 
 SELF_IP=$(ping -c 1 `hostname`|head -n 1 | awk -F '[()]' '{print $2}')
 SELF_ID=${HOSTNAME##*-} 
-# if [ $SELF_ID != "0" ]; then
-#   sleep 10000
-# fi
+if [ $SELF_ID != "0" ]; then
+  sleep 10000
+fi
 HOST_NAME=`hostname -f`
 
 chmod +x /usr/bin/net
 peers=`net lookupsrv -h $SERVICE_NAME --wrap`
 echo $peers
 
-if [ $SELF_ID -gt 0 && x$peers == x ]; then
-sleep 5
-fi
+while [ $SELF_ID -gt 0 && x$peers == x ]; do
+    sleep 2
+done
+
 if [[ x$peers == x ]]; then
     start_cmd="--initial-cluster node$SELF_ID=http://$HOST_NAME:2380"
     start_state="--initial-cluster-state new"
 else
     peers_http=""
     peerx=""
-    for peer in $peers; do
-    if [[ x$peerx == x ]]; then
-    peerx=$peer
-    else
-    peer=$peerx
-    fi
-    
+    for peer in $peers; do   
       id=${peer%%.*}
       id=${id##*-}
       peer2="node${id}=http://${peer}:2380"

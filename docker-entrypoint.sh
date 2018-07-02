@@ -38,7 +38,7 @@ else
     echo $peers_http
     ETCDCTL_API=3 etcdctl --endpoints "http://$peerx:2380" member add node$SELF_ID --peer-urls="http://$HOST_NAME:2380"
     export ETCD_NAME="node$SELF_ID"
-    export ETCD_INITIAL_CLUSTER="$peers_http,node$SELF_ID=http://$HOST_NAME:2380"
+    export ETCD_INITIAL_CLUSTER="$peers_http"
     export ETCD_INITIAL_CLUSTER_STATE="existing"
     # start_cmd="--initial-cluster $peers_http,node$SELF_ID=http://$HOST_NAME:2380"
     # start_state="--initial-cluster-state existing"

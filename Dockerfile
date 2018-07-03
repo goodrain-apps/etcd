@@ -12,7 +12,6 @@ ENV ETCDCTL_API=3
 VOLUME [ "/data" ]
 EXPOSE 2380 2379 4001
 COPY net /usr/bin/net
-COPY benchmark /usr/bin/benchmark
 COPY docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
 ENTRYPOINT [ "/docker-entrypoint.sh" ]

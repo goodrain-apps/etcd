@@ -4,9 +4,6 @@
 
 SELF_IP=$(ping -c 1 `hostname`|head -n 1 | awk -F '[()]' '{print $2}')
 SELF_ID=${HOSTNAME##*-} 
-# if [ $SELF_ID != "0" ]; then
-#   sleep 10000
-# fi
 HOST_NAME=`hostname -f`
 
 chmod +x /usr/bin/net
@@ -41,22 +38,12 @@ else
     export ETCD_NAME="node$SELF_ID"
     export ETCD_INITIAL_CLUSTER="$peers_http"
     export ETCD_INITIAL_CLUSTER_STATE="existing"
-    # start_cmd="--initial-cluster $peers_http,node$SELF_ID=http://$HOST_NAME:2380"
-    # start_state="--initial-cluster-state existing"
     start_cmd=
     start_state=
     sleep 3
 fi
 
 
-# etcd --name infra2 \
-# --discovery-srv example.com \
-# --initial-advertise-peer-urls http://10.0.1.12:2380 \
-# --initial-cluster-token etcd-cluster-1 \
-# --initial-cluster-state new \
-# --advertise-client-urls http://10.0.1.12:2379 \
-# --listen-client-urls http://10.0.1.12:2379 \
-# --listen-peer-urls http://10.0.1.12:2380
 exec /opt/goodrain/etcd/etcd \
      --name="node$SELF_ID" \
      --data-dir /data/  \
